@@ -1,14 +1,18 @@
 import React from 'react';
-import shortid from 'shortid';
 
-export const Contact = ({ dataContact }) => {
+export const Contact = ({ dataContact, onDelete }) => {
   return (
     <ul>
        <h2>Contacts</h2>
       {dataContact.map(data => (
-        <li id={shortid.generate()}>
+        <li key={data.id}>
           {data.name}: {data.number}
-          <button type='click'>X</button>
+          <button
+            type="button"
+            onClick={() => {
+              onDelete(data.id);
+            }}
+          >X</button>
         </li>
       ))}
     </ul>

@@ -27,7 +27,6 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: [addCont, ...prevState.contacts]
     }))  
-
   };
 
   filtrChange = (e) => {
@@ -40,6 +39,10 @@ export class App extends Component {
     return contacts.filter(contact => contact.name.toLocaleLowerCase().includes(normalizedFilter))
   }
 
+onDelete = (id) => {
+console.log(id);
+}
+
 
   render() {
 const visibleStat=this.filterRender()
@@ -47,7 +50,7 @@ const visibleStat=this.filterRender()
       <div>
         <FormContact addNamesContact={this.addNamesContact} />
         <Filter onChange={this.filtrChange} value={this.state.filter}/>
-        <Contact dataContact={visibleStat } />
+        <Contact dataContact={visibleStat } onDelete={this.onDelete}/>
       </div>
     );
   }
