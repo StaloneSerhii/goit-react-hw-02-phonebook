@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { FormStyled } from './Form.styled';
+import propTypes from 'prop-types';
 
 export class FormContact extends Component {
   state = {
@@ -16,16 +18,12 @@ export class FormContact extends Component {
     const { name, number } = this.state;
 
     this.props.addNamesContact(name, number);
-    this.setState({name: '', number:''})
+    this.setState({ name: '', number: '' });
   };
-
-  // reset = () => {
-  //   this.setState({ name: '', number: '' });
-  // };
 
   render() {
     return (
-      <form onSubmit={this.hundSubmit}>
+      <FormStyled onSubmit={this.hundSubmit}>
         <label>
           Name
           <input
@@ -52,7 +50,11 @@ export class FormContact extends Component {
           />
         </label>
         <button type="submit">add new contact</button>
-      </form>
+      </FormStyled>
     );
   }
 }
+
+FormContact.propTypes = {
+  addNamesContact: propTypes.func.isRequired,
+};
