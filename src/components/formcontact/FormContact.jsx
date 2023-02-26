@@ -3,7 +3,7 @@ import { Component } from 'react';
 export class FormContact extends Component {
   state = {
     name: '',
-    num: '',
+    number: '',
   };
 
   hundelChange = e => {
@@ -13,14 +13,15 @@ export class FormContact extends Component {
 
   hundSubmit = e => {
     e.preventDefault();
+    const { name, number } = this.state;
 
-    this.props.addNamesContact(this.state);
-    this.reset();
+    this.props.addNamesContact(name, number);
+    this.setState({name: '', number:''})
   };
 
-  reset = () => {
-    this.setState({ name: '', num: '' });
-  };
+  // reset = () => {
+  //   this.setState({ name: '', number: '' });
+  // };
 
   render() {
     return (
@@ -36,6 +37,18 @@ export class FormContact extends Component {
             value={this.state.name}
             required
             id="nameInputId"
+          />
+        </label>
+        <label>
+          Number
+          <input
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            onChange={this.hundelChange}
+            value={this.state.number}
+            required
           />
         </label>
         <button type="submit">add new contact</button>
